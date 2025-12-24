@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainLink Competition | Bridging Universities & Companies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1B1E2F;
+            --secondary-dark: #242F49;
+            --accent-coral: #FFA586;
+            --bold-red: #FF4E45;
+            --light-red: #FF6B6B;
+            --footer-red: #FF7A7A;
+            --gradient-red: linear-gradient(135deg, #FF4E45 0%, #FFA586 100%);
+            --gradient-light-red: linear-gradient(135deg, #FF6B6B 0%, #FF9E7D 100%);
+            --gradient-blue: linear-gradient(135deg, #242F49 0%, #1B1E2F 100%);
+            --gradient-coral: linear-gradient(135deg, #FFA586 0%, #FFD1C2 100%);
+            --font-primary: 'Montserrat', sans-serif;
+            --font-heading: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --glass-bg: rgba(36, 47, 73, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.4);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--primary-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(to right, #fff, var(--light-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-light-red);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-light-red);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: var(--font-primary);
+        }
+
+        .btn-primary {
+            background: var(--gradient-light-red);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--light-red);
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* 3D Background Elements */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-circle-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-light-red);
+            top: -200px;
+            right: -200px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-circle-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--light-red);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .bg-circle-3 {
+            width: 300px;
+            height: 300px;
+            background: #FF9E7D;
+            top: 40%;
+            right: 20%;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-element.small {
+            width: 10px;
+            height: 10px;
+            background: var(--light-red);
+            box-shadow: 0 0 15px var(--light-red);
+        }
+
+        .floating-element.medium {
+            width: 20px;
+            height: 20px;
+            background: var(--bold-red);
+            box-shadow: 0 0 20px var(--bold-red);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px var(--light-red); }
+            50% { box-shadow: 0 0 25px var(--light-red); }
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(27, 30, 47, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            font-family: var(--font-primary);
+        }
+
+        .nav-links a:hover {
+            color: var(--light-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-light-red);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            font-family: var(--font-primary);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-badge span {
+            margin: 0 10px;
+            color: var(--light-red);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .scroll-indicator i {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-blue);
+            opacity: 0;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--light-red);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-family: var(--font-primary);
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 80px auto 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-light-red);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            margin-left: 50px;
+        }
+
+        .timeline-node {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            border: 4px solid var(--light-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 2;
+            box-shadow: 0 0 0 10px rgba(27, 30, 47, 0.9);
+        }
+
+        .timeline-node i {
+            font-size: 1.5rem;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--gradient-light-red);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: var(--font-primary);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            font-family: var(--font-primary);
+        }
+
+        /* Phases Section */
+        .phases-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .phase-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .phase-badge {
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-light-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .phase-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: var(--light-red);
+        }
+
+        .phase-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .phase-card p {
+            font-family: var(--font-primary);
+        }
+
+       /* Partner Section */
+        .partner {
+            background-color: var(--secondary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 107, 0.2); /* Light red */
+            box-shadow: var(--shadow-hover);
+        }
+
+        .partner-logo-container {
+            width: 300px;
+            height: 150px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .partner-name {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-coral); /* Light red */
+        }
+
+        .partner-desc {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .partner-highlight {
+            color: var(--accent-coral); /* Light red */
+            font-weight: 600;
+        }
+
+        /* Registration Section */
+        .registration {
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .registration h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+        }
+
+        .registration-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-primary);
+        }
+
+        .registration-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            padding: 60px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-card::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-light-red);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .registration-card::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--light-red);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .registration-instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: left;
+            border-left: 4px solid var(--light-red);
+        }
+
+        .registration-instructions h4 {
+            margin-bottom: 10px;
+            color: var(--light-red);
+        }
+
+        .registration-instructions p {
+            font-family: var(--font-primary);
+        }
+
+        .form-link-container {
+            margin: 40px 0;
+        }
+
+        .form-link-container input {
+            width: 100%;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+        }
+
+        .form-link-container input:focus {
+            outline: none;
+            border-color: var(--light-red);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .registration-note {
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-family: var(--font-primary);
+        }
+
+        .urgent-badge {
+            display: inline-flex;
+            background: rgba(255, 107, 107, 0.2);
+            color: #FFB5B5;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            font-family: var(--font-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF4E45 100%);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+        }
+
+        footer::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-logo span {
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-tagline {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 300px;
+            font-family: var(--font-primary);
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-family: var(--font-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.4rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .phases-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 80px;
+                margin-right: 0;
+                width: calc(100% - 80px);
+            }
+            
+            .timeline-node {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .registration-card {
+                padding: 40px 25px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-tagline {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 70px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .registration h2 {
+                font-size: 2.4rem;
+            }
+            
+            .phase-card, .feature-card, .timeline-content {
+                padding: 25px;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .partner-logo-img {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background Elements -->
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element small" style="top: 20%; left: 10%; animation: float 15s infinite ease-in-out;"></div>
+    <div class="floating-element medium" style="top: 60%; left: 5%; animation: float 12s infinite ease-in-out reverse;"></div>
+    <div class="floating-element small" style="top: 30%; right: 15%; animation: float 18s infinite ease-in-out;"></div>
+    <div class="floating-element medium" style="bottom: 30%; right: 10%; animation: float 20s infinite ease-in-out reverse;"></div>
+
+      <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- LOGO - Using Picture1.png -->
+                <a href="#home" class="logo">
+                    <img src="Picture1.png" alt="BrainLink Competition" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block';">
+                    <!-- Text fallback -->
+                    <div class="logo-text" style="display: none;">BrainLink</div>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#phases" class="nav-link">Phases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#partner" class="nav-link">Partner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#registration" class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item nav-cta">
+                        <a href="#registration" class="btn btn-primary">Register Now</a>
+                    </li>
+                </ul>
+                
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>•</span> Innovation <span>•</span> Collaboration <span>•</span> Excellence <span>•</span>
+                </div>
+                <h1>BrainLink <span class="gradient-text">Competition</span></h1>
+                <p class="hero-tagline">Bridging Universities & Companies Through Innovation. Join the competition where business meets engineering to solve real-world challenges.</p>
+                <div class="hero-buttons">
+                    <a href="#register" class="btn btn-primary">Register Now</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            Scroll to explore
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">What is BrainLink?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>BrainLink is an innovation competition bringing together business and engineering students to solve real problems proposed by partner companies. It encourages creativity, collaboration, and applied learning through teamwork and mentorship.</p>
+                    <p>By creating a bridge between universities and companies, BrainLink provides students with hands-on experience while giving companies access to fresh perspectives and future talent.</p>
+                    <p>The competition consists of two phases where teams develop innovative solutions, receive expert mentorship, and present their ideas to industry leaders.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Collaboration</h3>
+                        <p>Teams of business and engineering students working together to solve complex challenges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Fresh perspectives and creative solutions to real industry problems from partner companies.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>Applied learning and growth through mentorship, resources, and expert guidance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Real Impact</h3>
+                        <p>Industry partnerships that lead to tangible solutions and career opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline">
+        <div class="container">
+            <h2 class="section-title">Competition Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-node">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Week 1-2</div>
+                        <h3>Registration Opens</h3>
+                        <p>Teams register and receive the competition brief with problem statements from our partner company. Kickoff webinar introduces the challenge and rules.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-node">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Week 3-5</div>
+                        <h3>Preparation Phase</h3>
+                        <p>Teams work on their solutions with mentorship sessions, workshops on design thinking and business modeling, and check-ins with advisors.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-node">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Week 6</div>
+                        <h3>Semifinals</h3>
+                        <p>Teams present their innovative solutions to a panel of judges. Top teams are selected to advance to the finals based on creativity, feasibility, and presentation quality.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-node">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Week 7-8</div>
+                        <h3>Finalist Preparation</h3>
+                        <p>Finalist teams refine their solutions with intensive mentorship, prototype development, and presentation coaching from industry experts.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-node">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Week 9</div>
+                        <h3>Finals & Awards Ceremony</h3>
+                        <p>Final presentations to an expert panel including executives from Henkel Algeria. Winners are announced and awarded at a special ceremony with networking opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Phases Section -->
+    <section class="phases section" id="phases">
+        <div class="container">
+            <h2 class="section-title">Competition Phases</h2>
+            <p class="section-subtitle">The competition unfolds in two exciting phases, each designed to challenge participants and showcase their innovative solutions.</p>
+            
+            <div class="phase-cards">
+                <div class="phase-card">
+                    <div class="phase-badge">01</div>
+                    <div class="phase-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="phase-title">Semifinals</h3>
+                    <div class="phase-subtitle">Initial Presentations</div>
+                    <p class="phase-desc">Teams present their initial solutions to a panel of judges. The best teams from this round will advance to the finals. This phase focuses on the core concept, feasibility, and potential impact of the proposed solutions.</p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-badge">02</div>
+                    <div class="phase-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="phase-title">Finals</h3>
+                    <div class="phase-subtitle">Expert Panel Judging</div>
+                    <p class="phase-desc">Finalists present refined solutions to an expert panel including representatives from Henkel Algeria. This phase evaluates implementation strategy, business viability, and presentation quality to determine the winning team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="partner section" id="partner">
+        <div class="container">
+            <h2 class="section-title">Our Partner</h2>
+            <p class="section-subtitle">BrainLink is proud to partner with industry leaders who provide real-world challenges and mentorship.</p>
+            
+            <div class="partner-card">
+                <!-- Henkel Logo using 1200px-Henkel-Logo.svg.png -->
+                <div class="partner-logo-container">
+                    <img src="1200px-Henkel-Logo.svg.png" alt="Henkel Algeria" class="partner-logo">
+                </div>
+                <h3 class="partner-name">Henkel Algeria</h3>
+                <p class="partner-desc">Henkel operates worldwide with leading brands and technologies in three business areas: Laundry & Home Care, Beauty Care, and Adhesive Technologies. Founded in 1876, Henkel looks back on more than 140 years of success.</p>
+                <p class="partner-desc">Through this partnership, <span class="partner-highlight">Henkel Algeria provides real business challenges</span> for students to solve, offering valuable industry insights and access to experienced mentors. This collaboration creates a direct pipeline between academic excellence and industry needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration section" id="registration">
+        <div class="container">
+            <div class="registration-content">
+                <h2 class="section-title">Ready to Innovate?</h2>
+                <p class="section-subtitle">Join the BrainLink Competition and showcase your skills to solve real business challenges. Registration is open to all university students in business and engineering disciplines.</p>
+                
+                <div class="registration-instructions">
+                    <h3 class="instructions-title">How to Register:</h3>
+                    <ul class="instructions-list">
+                        <li>Form a team of 3-5 students (mix of business and engineering students preferred)</li>
+                        <li>Choose a team name and select a team captain</li>
+                        <li>Click the "Register Your Team" button below</li>
+                        <li>Complete the registration form with all required information</li>
+                        <li>Submit before the registration deadline</li>
+                    </ul>
+                    <p><strong>Note:</strong> Registration is free and open to all university students. The competition will provide detailed briefs from Henkel Algeria after registration closes.</p>
+                </div>
+                
+                <div class="form-link-container">
+                    <h3 class="form-link-title">Registration Form</h3>
+                    <!-- Replace this link with your actual Google Form link -->
+                    <a href="https://forms.google.com/your-form-link-here" class="form-link" id="form-link" target="_blank">
+                        https://forms.google.com/your-form-link-here
+                    </a>
+                    <p class="registration-note">Click the link above or the button below to access the registration form. Make sure to complete all required fields.</p>
+                </div>
+                
+                <a href="https://forms.google.com/your-form-link-here" class="btn btn-primary" target="_blank" style="padding: 20px 50px; font-size: 1.2rem;">
+                    <i class="fas fa-user-plus" style="margin-right: 10px;"></i> Register Your Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Logo - Using same Picture1.png -->
+                <a href="#home" class="footer-logo">
+                    <img src="Picture1.png" alt="BrainLink Competition">
+                </a>
+                
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/elite_esgen?igsh=cG5ldTBua2xwM2Uz" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BrainLink Competition. All rights reserved.</p>
+                <p>Bringing together business and engineering students to solve real-world challenges.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Update active nav link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll indicator functionality
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        scrollIndicator.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Hide scroll indicator after
+
+   
